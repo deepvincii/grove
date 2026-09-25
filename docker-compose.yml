@@ -1,0 +1,32 @@
+name: grove
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: grove-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: grove
+      POSTGRES_PASSWORD: grove
+      POSTGRES_DB: grove
+    ports:
+      - "127.0.0.1:54329:5432"
+    volumes:
+      - grove_pg:/var/lib/postgresql/data
+    networks:
+      - grove
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U grove -d grove"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+# Deployed apps join this network too, so they reach add-on databases at grove-postgres:5432.
+# `npm run setup` creates it before starting compose.
+networks:
+  grove:
+    name: grove
+    external: true
+
+volumes:
+  grove_pg:

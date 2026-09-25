@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  /* Surfaces */
+  --color-paper: #f7f7f2;
+  --color-card: #ffffff;
+  --color-sunken: #f0f1ea;
+  --color-line: #e2e5da;
+  --color-line-strong: #cfd4c6;
+
+  /* Text */
+  --color-ink: #13241b;
+  --color-muted: #5d6b62;
+  --color-faint: #8b978f;
+
+  /* Greens */
+  --color-forest: #1e4d36;
+  --color-forest-deep: #143726;
+  --color-moss: #3f7a55;
+  --color-leaf: #2f9e5f;
+  --color-sage: #a9bea0;
+  --color-mint: #e6f0e4;
+
+  /* Status */
+  --color-amber: #a8661a;
+  --color-amber-soft: #fbf1dc;
+  --color-clay: #b4432f;
+  --color-clay-soft: #f9e5e0;
+
+  /* Terminal / logs */
+  --color-term: #0f1a14;
+  --color-term-line: #1d2b23;
+  --color-term-fg: #d7e3da;
+  --color-term-dim: #7d9285;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: #cfe3cf;
+  color: var(--color-forest-deep);
+}
