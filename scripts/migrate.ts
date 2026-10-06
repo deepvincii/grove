@@ -1,8 +1,8 @@
-import "../src/lib/env";
+import "../src/lib/shared/env";
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import pg from "pg";
-import { config } from "../src/lib/config";
+import { config } from "../src/lib/shared/config";
 
 const migrationsDir = path.join(process.cwd(), "db", "migrations");
 const client = new pg.Client({ connectionString: config.databaseUrl });

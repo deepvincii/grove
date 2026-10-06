@@ -1,10 +1,10 @@
-import { query } from "@/lib/db";
-import { enqueueDeployment } from "@/lib/deployments";
-import { shortSha } from "@/lib/format";
-import { GitHubError } from "@/lib/github";
-import { APP_COLUMNS } from "@/lib/queries";
-import { branchHead, commitInfo } from "@/lib/repos";
-import type { App } from "@/lib/types";
+import { query } from "@/lib/shared/db";
+import { enqueueDeployment } from "@/lib/shared/deployments";
+import { shortSha } from "@/lib/shared/format";
+import { GitHubError } from "@/lib/shared/github";
+import { APP_COLUMNS } from "@/lib/shared/queries";
+import { branchHead, commitInfo } from "@/lib/shared/repos";
+import type { App } from "@/lib/shared/types";
 
 let pausedUntil = 0;
 
@@ -34,7 +34,7 @@ async function pollApp(app: App): Promise<void> {
     author: commit?.author,
     trigger: "push",
   });
-  if (id) console.log(`[poller] ${app.name}: new commit ${shortSha(head.sha)} on ${app.branch} → deployment #${id}`);
+  console.log(`[poller] ${app.name}: new commit ${shortSha(head.sha)} on ${app.branch} → deployment #${id}`);
 }
 
 async function pollAll(): Promise<void> {

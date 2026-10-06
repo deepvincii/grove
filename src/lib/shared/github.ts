@@ -3,7 +3,7 @@ import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 
-export type TokenSource = "env" | "gh" | "none";
+type TokenSource = "env" | "gh" | "none";
 
 let ghTokenCache: { token: string | null; at: number } | null = null;
 

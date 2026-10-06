@@ -9,7 +9,6 @@ export const config = {
   /** Ports the runner tries, in order, for serving apps at http://<app>.localhost[:port]. */
   appsPorts: process.env.APPS_PORT ? [intFromEnv("APPS_PORT", 80)] : [80, 3080],
   pollIntervalMs: intFromEnv("POLL_INTERVAL_MS", 5000),
-  webhookSecret: process.env.GITHUB_WEBHOOK_SECRET || null,
   /** Docker network shared by deployed apps and the add-on Postgres (see docker-compose.yml). */
   dockerNetwork: process.env.DOCKER_NETWORK || "grove",
   addonPostgresHost: process.env.ADDON_POSTGRES_HOST || "grove-postgres",

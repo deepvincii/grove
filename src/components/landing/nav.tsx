@@ -1,58 +1,48 @@
 import { Logo } from "@/components/logo";
-import { brand } from "@/lib/brand";
-import { ButtonLink, CtaIcon, type Cta } from "./button-link";
-import { GithubMark } from "./github-mark";
+import { brand } from "@/lib/web/brand";
+import { cn } from "@/lib/web/cn";
+import { ButtonLink, focusRing, type Cta } from "./button-link";
 
 const links = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Features", href: "#features" },
   { label: "Install", href: "#install" },
+  { label: "GitHub", href: brand.repoUrl },
 ];
-
-const focusRing =
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest";
 
 export function Nav({ cta }: { cta: Cta }) {
   return (
-    <header className="fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-6">
+    <header className="absolute inset-x-0 top-0 z-10">
       <nav
         aria-label="Main"
-        className="mx-auto grid h-14 max-w-5xl grid-cols-[1fr_auto] items-center gap-4 rounded-full border border-line bg-card/85 pr-2 pl-4 shadow-[0_1px_2px_rgb(19_36_27/0.04),0_10px_30px_-18px_rgb(19_36_27/0.25)] backdrop-blur-md md:grid-cols-[1fr_auto_1fr] md:pl-5"
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:h-20 sm:px-6"
       >
-        <a
-          href="#top"
-          aria-label={`${brand.name}, back to top`}
-          className={`justify-self-start rounded-lg ${focusRing}`}
-        >
+        <a href="#top" aria-label={`${brand.name}, back to top`} className={cn("rounded-sm", focusRing)}>
           <Logo />
         </a>
-
-        <ul className="hidden items-center gap-1 md:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={`rounded-full px-3.5 py-2 text-sm text-muted transition-colors hover:bg-sunken hover:text-ink ${focusRing}`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-1.5 justify-self-end">
-          <a
-            href={brand.repoUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`${brand.name} on GitHub`}
-            className={`hidden size-9 place-items-center rounded-full text-muted transition-colors hover:bg-sunken hover:text-ink sm:grid ${focusRing}`}
-          >
-            <GithubMark className="size-[18px]" />
-          </a>
+        <div className="flex items-center gap-8">
+          <ul className="hidden items-center gap-7 text-sm md:flex">
+            {links.map((link) => {
+              const external = link.href.startsWith("http");
+              return (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noreferrer" : undefined}
+                    className={cn(
+                      "rounded-sm text-ink/70 underline-offset-[6px] transition-colors hover:text-ink hover:underline",
+                      focusRing,
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
           <ButtonLink href={cta.href} size="sm">
             {cta.label}
-            <CtaIcon href={cta.href} className="size-3.5" strokeWidth={2.25} />
           </ButtonLink>
         </div>
       </nav>

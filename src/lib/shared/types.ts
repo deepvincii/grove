@@ -9,11 +9,11 @@ export type DeploymentStatus =
   | "superseded"
   | "cancelled";
 
-export type DeploymentTrigger = "initial" | "push" | "webhook" | "manual" | "redeploy" | "config";
+export type DeploymentTrigger = "initial" | "push" | "manual" | "redeploy" | "config";
 
 export type LogKind = "step" | "build" | "error";
 
-export const ACTIVE_STATUSES: readonly DeploymentStatus[] = [
+const ACTIVE_STATUSES: readonly DeploymentStatus[] = [
   "queued",
   "cloning",
   "building",

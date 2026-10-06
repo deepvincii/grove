@@ -1,49 +1,37 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/web/cn";
 
 export type Cta = { label: string; href: string };
 
-export function CtaIcon({
-  href,
-  className,
-  strokeWidth,
-}: {
-  href: string;
-  className?: string;
-  strokeWidth?: number;
-}) {
+export function CtaIcon({ href, className }: { href: string; className?: string }) {
   const Icon = href.startsWith("#") ? ArrowDown : ArrowRight;
-  return <Icon className={className} strokeWidth={strokeWidth} />;
+  return <Icon className={className} strokeWidth={2} />;
 }
 
-const variants = {
-  primary: "bg-forest text-white hover:bg-forest-deep",
-  secondary: "border border-line-strong bg-card text-ink hover:border-sage hover:bg-sunken",
-};
+export const focusRing =
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest";
 
 const sizes = {
-  sm: "h-9 gap-1.5 px-4 text-sm",
-  md: "h-12 gap-2 px-6 text-[15px]",
+  sm: "h-9 gap-1.5 px-3.5 text-sm",
+  md: "h-11 gap-2 px-5 text-[15px]",
 };
 
 export function ButtonLink({
   href,
-  variant = "primary",
   size = "md",
   className,
   children,
 }: {
   href: string;
-  variant?: keyof typeof variants;
   size?: keyof typeof sizes;
   className?: string;
   children: ReactNode;
 }) {
   const classes = cn(
-    "inline-flex shrink-0 items-center justify-center rounded-full font-medium whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest",
-    variants[variant],
+    "inline-flex shrink-0 items-center justify-center rounded-md bg-forest font-medium whitespace-nowrap text-white transition-colors hover:bg-forest-deep",
+    focusRing,
     sizes[size],
     className,
   );

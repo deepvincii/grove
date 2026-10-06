@@ -2,7 +2,7 @@
 
 import { LoaderCircle } from "lucide-react";
 import { useFormStatus } from "react-dom";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/web/cn";
 
 export function SubmitButton({
   children,

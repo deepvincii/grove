@@ -40,7 +40,7 @@ export function RuntimeLogs({ appName }: { appName: string }) {
   }, [lines]);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-term-line bg-term">
+    <div className="overflow-hidden rounded-lg border border-term-line bg-term">
       <div className="flex items-center justify-between border-b border-term-line px-4 py-2.5 text-xs text-term-dim">
         <span className="font-mono">{appName} · stdout + stderr</span>
         <span className="flex items-center gap-1.5">

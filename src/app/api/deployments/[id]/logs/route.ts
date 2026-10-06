@@ -1,4 +1,4 @@
-import { getDeployment, getLogsAfter } from "@/lib/queries";
+import { getDeployment, getLogsAfter } from "@/lib/shared/queries";
 
 export async function GET(request: Request, context: RouteContext<"/api/deployments/[id]/logs">) {
   const { id } = await context.params;

@@ -1,0 +1,231 @@
+/*
+ * One 8s loop for the newest commit: push (0–22%), building (22–58%), live (58–96%).
+ * Nothing disappears: the leaf is a bud before it grows, and statuses swap in place.
+ * The static styles are the finished frame, used when motion is reduced.
+ */
+.branch {
+  --loop: 8s;
+  --live-node: #3f7a55;
+  --idle-node: #f7f7f2;
+}
+
+.newestLeaf,
+.sway {
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+}
+
+.ring {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  opacity: 0;
+}
+
+.newestNode {
+  fill: var(--live-node);
+}
+
+.push,
+.building,
+.prevLive {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .push,
+  .building,
+  .live,
+  .prevLive,
+  .prevReplaced,
+  .newestLeaf,
+  .newestNode,
+  .ring {
+    animation-duration: var(--loop);
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  .push {
+    animation-name: push;
+  }
+  .building {
+    animation-name: building;
+  }
+  .live {
+    animation-name: live;
+  }
+  .prevLive {
+    animation-name: prev-live;
+  }
+  .prevReplaced {
+    animation-name: prev-replaced;
+  }
+  .newestLeaf {
+    animation-name: leaf;
+  }
+  .newestNode {
+    animation-name: node;
+  }
+  .ring {
+    animation-name: ring;
+  }
+
+  .caret {
+    animation: blink 0.9s steps(1, end) infinite;
+  }
+
+  /* The older leaves move a little, like they're outside. */
+  .sway {
+    animation: sway 6s ease-in-out infinite alternate;
+  }
+  .sway1 {
+    animation-delay: -2s;
+  }
+  .sway2 {
+    animation-delay: -4s;
+  }
+}
+
+@keyframes push {
+  0%,
+  21% {
+    opacity: 1;
+  }
+  23%,
+  97% {
+    opacity: 0;
+  }
+  99%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes building {
+  0%,
+  21% {
+    opacity: 0;
+  }
+  23%,
+  57% {
+    opacity: 1;
+  }
+  59%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes live {
+  0%,
+  57% {
+    opacity: 0;
+  }
+  59%,
+  95% {
+    opacity: 1;
+  }
+  97%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes prev-live {
+  0%,
+  57% {
+    opacity: 1;
+  }
+  59%,
+  95% {
+    opacity: 0;
+  }
+  97%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes prev-replaced {
+  0%,
+  57% {
+    opacity: 0;
+  }
+  59%,
+  95% {
+    opacity: 1;
+  }
+  97%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* A bud while the push goes out, unfurling during the build. */
+@keyframes leaf {
+  0%,
+  22% {
+    transform: scale(0.22) rotate(-18deg);
+    animation-timing-function: cubic-bezier(0.25, 0.8, 0.3, 1);
+  }
+  52% {
+    transform: scale(1.06) rotate(2deg);
+  }
+  58%,
+  95% {
+    transform: none;
+    animation-timing-function: ease-in;
+  }
+  99.5%,
+  100% {
+    transform: scale(0.22) rotate(-18deg);
+  }
+}
+
+@keyframes node {
+  0%,
+  57% {
+    fill: var(--idle-node);
+  }
+  59%,
+  95% {
+    fill: var(--live-node);
+  }
+  97%,
+  100% {
+    fill: var(--idle-node);
+  }
+}
+
+/* One ripple from the new commit when it's pushed. */
+@keyframes ring {
+  0%,
+  3% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  5% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  19%,
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-2.5deg);
+  }
+  to {
+    transform: rotate(2.5deg);
+  }
+}

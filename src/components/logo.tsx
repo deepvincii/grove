@@ -1,7 +1,7 @@
-import { brand } from "@/lib/brand";
-import { cn } from "@/lib/cn";
+import { brand } from "@/lib/web/brand";
+import { cn } from "@/lib/web/cn";
 
-export function LogoMark({ className }: { className?: string }) {
+function LogoMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" className={cn("size-7 shrink-0", className)}>
       <rect width="32" height="32" rx="9" fill="#1e4d36" />

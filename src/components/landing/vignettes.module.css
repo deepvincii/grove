@@ -1,0 +1,576 @@
+/*
+ * Feature illustrations. Each loops on its own clock; the static styles are
+ * the finished frame, used when motion is reduced.
+ */
+
+/* Deploys on every push (8s) */
+.deployWipe {
+  transform: translateX(264px);
+}
+
+.deployLive {
+  transform: translateX(264px);
+}
+
+.deployBuilding {
+  opacity: 0;
+}
+
+/* Rollback (7s) */
+.rbMarker {
+  transform: translateY(96px);
+}
+
+.rbArrow {
+  fill: none;
+  stroke: var(--color-forest, #1e4d36);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 0;
+}
+
+.rbButton,
+.rbCursor {
+  opacity: 0;
+}
+
+.rbButton {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.rbCursor {
+  transform: translate(362px, 146px);
+  transform-box: fill-box;
+  transform-origin: 0 0;
+}
+
+/* Small vignettes */
+.logLines {
+  transform: translateY(-28px);
+}
+
+.dots {
+  fill: none;
+  stroke: var(--color-faint, #8d928e);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-dasharray: 0 6;
+}
+
+.secretValue {
+  opacity: 0;
+}
+
+.secretDots {
+  stroke-dasharray: 0 6 0 6 0 6 0 6 0 40;
+  stroke-dashoffset: 0;
+}
+
+.pgDigits {
+  transform: translateY(-52.5px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .deployScene,
+  .deployWipe,
+  .deployLive,
+  .deployBuilding {
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+  .deployScene {
+    animation-name: deploy-scene;
+  }
+  .deployWipe {
+    animation-name: deploy-wipe;
+  }
+  .deployLive {
+    animation-name: deploy-live;
+  }
+  .deployBuilding {
+    animation-name: deploy-building;
+  }
+
+  .rbScene,
+  .rbMarker,
+  .rbArrow,
+  .rbArrowHead,
+  .rbReplaced,
+  .rbButton,
+  .rbCursor {
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+  .rbScene {
+    animation-name: rb-scene;
+  }
+  .rbMarker {
+    animation-name: rb-marker;
+  }
+  .rbArrow {
+    animation-name: rb-arrow;
+  }
+  .rbArrowHead {
+    animation-name: rb-arrow-head;
+  }
+  .rbReplaced {
+    animation-name: rb-replaced;
+  }
+  .rbButton {
+    animation-name: rb-button;
+  }
+  .rbCursor {
+    animation-name: rb-cursor;
+  }
+
+  .slab1,
+  .slab2,
+  .slab3 {
+    animation-duration: 4.5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+  .slab1 {
+    animation-name: slab1;
+  }
+  .slab2 {
+    animation-name: slab2;
+  }
+  .slab3 {
+    animation-name: slab3;
+  }
+
+  .logLines {
+    animation: log-lines 4s infinite both;
+  }
+
+  .secretValue {
+    animation: secret-value 4.5s infinite both;
+  }
+  .secretDots {
+    animation: secret-dots 4.5s infinite both;
+  }
+
+  .pgDigits {
+    animation: pg-digits 5s infinite both;
+  }
+  .pgCounter {
+    animation: pg-counter 5s infinite both;
+  }
+
+  .blink {
+    animation: blink 0.9s steps(1, end) infinite;
+  }
+}
+
+@keyframes deploy-scene {
+  0%,
+  93.75% {
+    opacity: 1;
+  }
+  97.5%,
+  98% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes deploy-wipe {
+  0%,
+  12.5% {
+    transform: translateX(0);
+  }
+  15%,
+  37.5% {
+    transform: translateX(88px);
+  }
+  40%,
+  62.5% {
+    transform: translateX(176px);
+  }
+  65%,
+  97.5% {
+    transform: translateX(264px);
+  }
+  98%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes deploy-live {
+  0%,
+  30% {
+    transform: translateX(0);
+  }
+  32%,
+  55% {
+    transform: translateX(88px);
+  }
+  57%,
+  80% {
+    transform: translateX(176px);
+  }
+  82%,
+  97.5% {
+    transform: translateX(264px);
+  }
+  98%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes deploy-building {
+  0%,
+  15% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  16.5%,
+  30% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  31%,
+  40% {
+    opacity: 0;
+    transform: translateX(88px);
+  }
+  41.5%,
+  55% {
+    opacity: 1;
+    transform: translateX(88px);
+  }
+  56%,
+  65% {
+    opacity: 0;
+    transform: translateX(176px);
+  }
+  66.5%,
+  80% {
+    opacity: 1;
+    transform: translateX(176px);
+  }
+  81%,
+  100% {
+    opacity: 0;
+    transform: translateX(176px);
+  }
+}
+
+@keyframes rb-scene {
+  0%,
+  88.6% {
+    opacity: 1;
+  }
+  92.9%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rb-marker {
+  0%,
+  35% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.2, 1);
+  }
+  42.9%,
+  92.9% {
+    transform: translateY(96px);
+  }
+  93.5%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rb-arrow {
+  0%,
+  32.9% {
+    stroke-dashoffset: 1;
+  }
+  41.4%,
+  92.9% {
+    stroke-dashoffset: 0;
+  }
+  93.5%,
+  100% {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes rb-arrow-head {
+  0%,
+  40.5% {
+    opacity: 0;
+  }
+  42%,
+  92.9% {
+    opacity: 1;
+  }
+  93.5%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rb-replaced {
+  0%,
+  41.4% {
+    opacity: 0;
+  }
+  44.3%,
+  92.9% {
+    opacity: 1;
+  }
+  93.5%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rb-button {
+  0%,
+  14.3% {
+    opacity: 0;
+    transform: none;
+  }
+  17.1%,
+  28.4% {
+    opacity: 1;
+    transform: none;
+  }
+  29.3% {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  31%,
+  32.9% {
+    opacity: 1;
+    transform: none;
+  }
+  35.7%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+@keyframes rb-cursor {
+  0%,
+  17.1% {
+    opacity: 0;
+    transform: translate(300px, 196px);
+  }
+  18.6% {
+    opacity: 1;
+    transform: translate(300px, 196px);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.2, 1);
+  }
+  27.1% {
+    opacity: 1;
+    transform: translate(362px, 146px);
+  }
+  28.6% {
+    transform: translate(362px, 146px) scale(0.85);
+  }
+  30.7%,
+  32.9% {
+    opacity: 1;
+    transform: translate(362px, 146px) scale(1);
+  }
+  35.7%,
+  100% {
+    opacity: 0;
+    transform: translate(362px, 146px) scale(1);
+  }
+}
+
+/* The stack never disappears: the top layer lifts and drops back into place,
+   and the layers under it give a little on impact. */
+@keyframes slab1 {
+  0%,
+  44% {
+    transform: none;
+  }
+  48% {
+    transform: translateY(1px);
+  }
+  54%,
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes slab2 {
+  0%,
+  44% {
+    transform: none;
+  }
+  48% {
+    transform: translateY(1.5px);
+  }
+  56%,
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes slab3 {
+  0%,
+  18% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  32% {
+    transform: translateY(-9px);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.4);
+  }
+  44% {
+    transform: none;
+  }
+  48% {
+    transform: translateY(1.5px);
+  }
+  56%,
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes log-lines {
+  0%,
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  18.75%,
+  27.5% {
+    transform: translateY(-7px);
+  }
+  31.25%,
+  40% {
+    transform: translateY(-14px);
+  }
+  43.75%,
+  52.5% {
+    transform: translateY(-21px);
+  }
+  56.25%,
+  85% {
+    opacity: 1;
+    transform: translateY(-28px);
+  }
+  92.5% {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+  93%,
+  94% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes secret-value {
+  0%,
+  26.7% {
+    opacity: 1;
+  }
+  32.2%,
+  91.1% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes secret-dots {
+  0%,
+  33.3% {
+    opacity: 1;
+    stroke-dashoffset: 30;
+    animation-timing-function: steps(5, end);
+  }
+  51.1%,
+  84.4% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  88.9% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  89%,
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 30;
+  }
+}
+
+@keyframes pg-digits {
+  0%,
+  16% {
+    transform: translateY(0);
+  }
+  19%,
+  32% {
+    transform: translateY(-10.5px);
+  }
+  35%,
+  48% {
+    transform: translateY(-21px);
+  }
+  51%,
+  64% {
+    transform: translateY(-31.5px);
+  }
+  67%,
+  80% {
+    transform: translateY(-42px);
+  }
+  83%,
+  93% {
+    transform: translateY(-52.5px);
+  }
+  94%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pg-counter {
+  0%,
+  90% {
+    opacity: 1;
+  }
+  93%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

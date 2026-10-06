@@ -3,10 +3,10 @@ import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import http from "node:http";
 import os from "node:os";
 import path from "node:path";
-import { addonEnv } from "@/lib/addons";
-import { config } from "@/lib/config";
-import { query, queryOne, withTransaction } from "@/lib/db";
-import { enqueueDeployment } from "@/lib/deployments";
+import { addonEnv } from "@/lib/shared/addons";
+import { config } from "@/lib/shared/config";
+import { query, queryOne, withTransaction } from "@/lib/shared/db";
+import { enqueueDeployment } from "@/lib/shared/deployments";
 import {
   containerLogs,
   docker,
@@ -15,12 +15,12 @@ import {
   listContainers,
   removeContainer,
   removeImage,
-} from "@/lib/docker";
-import { appUrl, shortSha } from "@/lib/format";
-import { getGitHubToken } from "@/lib/github";
-import { DEPLOYMENT_COLUMNS, getAppById, getEnvVars } from "@/lib/queries";
-import { cloneUrl, parseRepo, repoLabel } from "@/lib/repos";
-import type { App, Deployment, DeploymentStatus } from "@/lib/types";
+} from "@/lib/shared/docker";
+import { appUrl, shortSha } from "@/lib/shared/format";
+import { getGitHubToken } from "@/lib/shared/github";
+import { DEPLOYMENT_COLUMNS, getAppById, getEnvVars } from "@/lib/shared/queries";
+import { cloneUrl, parseRepo, repoLabel } from "@/lib/shared/repos";
+import type { App, Deployment, DeploymentStatus } from "@/lib/shared/types";
 import { buildEnvScript, execPrefixed, prepareBuild } from "./buildpack";
 import { DeployLog } from "./deploy-log";
 import { run, sleep } from "./exec";

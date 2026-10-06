@@ -6,7 +6,7 @@ import { HowItWorks } from "@/components/landing/how-it-works";
 import { Install } from "@/components/landing/install";
 import styles from "@/components/landing/landing.module.css";
 import { Nav } from "@/components/landing/nav";
-import { isLandingOnly } from "@/lib/site";
+import { isLandingOnly } from "@/lib/web/site";
 
 export default function Home() {
   const cta: Cta = isLandingOnly()
@@ -14,7 +14,7 @@ export default function Home() {
     : { label: "Open dashboard", href: "/dashboard" };
 
   return (
-    <div className={styles.page}>
+    <div className={`relative ${styles.page}`}>
       <Nav cta={cta} />
       <main>
         <Hero cta={cta} />

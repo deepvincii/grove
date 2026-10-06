@@ -15,7 +15,7 @@ export async function docker(
   return stdout;
 }
 
-export interface ContainerState {
+interface ContainerState {
   running: boolean;
   restarting: boolean;
   exitCode: number;

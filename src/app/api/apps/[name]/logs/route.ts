@@ -1,5 +1,5 @@
-import { containerLogs } from "@/lib/docker";
-import { getAppByName, getDeployment } from "@/lib/queries";
+import { containerLogs } from "@/lib/shared/docker";
+import { getAppByName, getDeployment } from "@/lib/shared/queries";
 
 export async function GET(_request: Request, context: RouteContext<"/api/apps/[name]/logs">) {
   const { name } = await context.params;

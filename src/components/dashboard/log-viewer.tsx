@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/cn";
-import type { DeploymentStatus, LogKind } from "@/lib/types";
+import { cn } from "@/lib/web/cn";
+import type { DeploymentStatus, LogKind } from "@/lib/shared/types";
 
 interface Line {
   id: number;
@@ -64,7 +64,7 @@ export function LogViewer({ deploymentId, initialStatus }: { deploymentId: numbe
   }, [lines]);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-term-line bg-term">
+    <div className="overflow-hidden rounded-lg border border-term-line bg-term">
       <div className="flex items-center justify-between border-b border-term-line px-4 py-2.5 text-xs text-term-dim">
         <span className="font-mono">build log</span>
         <span>{FINISHED.includes(status) ? `${lines.length} lines` : "streaming…"}</span>

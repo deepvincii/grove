@@ -6,7 +6,7 @@ pg.types.setTypeParser(pg.types.builtins.INT8, (value: string) => Number.parseIn
 
 const globalForDb = globalThis as unknown as { grovePool?: pg.Pool };
 
-export function getPool(): pg.Pool {
+function getPool(): pg.Pool {
   if (!globalForDb.grovePool) {
     const pool = new pg.Pool({ connectionString: config.databaseUrl, max: 5 });
     pool.on("error", (error) => console.error("[db] idle client error:", error.message));

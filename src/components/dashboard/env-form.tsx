@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { saveEnv, type FormState } from "@/app/dashboard/actions";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/web/cn";
 import { SubmitButton } from "./submit-button";
 import { button, input } from "./ui";
 

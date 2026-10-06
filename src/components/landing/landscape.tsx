@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/web/cn";
 import styles from "./landing.module.css";
 
 const WIDTH = 2400;
@@ -240,9 +240,8 @@ export function Landscape({
       {ridge ? null : (
         <>
           <Layer index={0}>
-            <circle cx="1850" cy="112" r="104" fill="#fff" fillOpacity="0.14" />
-            <circle cx="1850" cy="112" r="78" fill="#fff" fillOpacity="0.22" />
-            <circle cx="1850" cy="112" r="54" fill="#fcfcf5" />
+            <circle cx="1850" cy="112" r="80" fill="#fff" fillOpacity="0.3" />
+            <circle cx="1850" cy="112" r="54" fill="#fbfbf4" />
           </Layer>
           <Layer index={1}>
             <path d={layers.far} fill="#dfe7da" />

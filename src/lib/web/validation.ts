@@ -38,7 +38,7 @@ export function normalizeRepo(input: string): string | null {
   return other ? `https://${other[1].toLowerCase()}${other[2]}` : null;
 }
 
-export function envKeyError(key: string): string | null {
+function envKeyError(key: string): string | null {
   if (!ENV_KEY.test(key)) return `"${key}" isn't a valid variable name.`;
   if (RESERVED_ENV_KEYS.has(key) || key.startsWith("DOCKER_") || key.startsWith("GROVE_")) {
     return `${key} is managed by Grove.`;

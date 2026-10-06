@@ -1,23 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import { brand } from "@/lib/brand";
+import { IBM_Plex_Mono, IBM_Plex_Serif } from "next/font/google";
+import localFont from "next/font/local";
+import { brand } from "@/lib/web/brand";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// Google now serves Plex Sans as a variable-width font, which Turbopack's production build
+// can't load, so it comes from the @fontsource package instead.
+const plexSans = localFont({
+  variable: "--font-plex-sans",
+  src: [
+    { path: "../../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2", weight: "400" },
+    { path: "../../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2", weight: "500" },
+    { path: "../../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2", weight: "600" },
+  ],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plexSerif = IBM_Plex_Serif({
+  variable: "--font-plex-serif",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${plexSans.variable} ${plexSerif.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper font-sans text-ink">{children}</body>
     </html>

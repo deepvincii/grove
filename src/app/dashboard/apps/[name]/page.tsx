@@ -10,14 +10,14 @@ import { DeleteAppForm, SettingsForm } from "@/components/dashboard/settings-for
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { SubmitButton } from "@/components/dashboard/submit-button";
 import { button, card } from "@/components/dashboard/ui";
-import { addonEnv } from "@/lib/addons";
-import { cn } from "@/lib/cn";
-import { appUrl, duration, shortSha, timeAgo } from "@/lib/format";
-import { getAppByName, getDeployment, getEnvVars, getHeartbeat, listDeployments } from "@/lib/queries";
-import { commitWebUrl, repoLabel, repoWebUrl } from "@/lib/repos";
-import { TRIGGER_LABELS, appStatus } from "@/lib/status";
-import type { App, Deployment } from "@/lib/types";
-import { formatEnvText } from "@/lib/validation";
+import { addonEnv } from "@/lib/shared/addons";
+import { cn } from "@/lib/web/cn";
+import { appUrl, duration, shortSha, timeAgo } from "@/lib/shared/format";
+import { getAppByName, getDeployment, getEnvVars, getHeartbeat, listDeployments } from "@/lib/shared/queries";
+import { commitWebUrl, repoLabel, repoWebUrl } from "@/lib/shared/repos";
+import { TRIGGER_LABELS, appStatus } from "@/lib/web/status";
+import type { App, Deployment } from "@/lib/shared/types";
+import { formatEnvText } from "@/lib/web/validation";
 
 const TABS = [
   { id: "deployments", label: "Deployments" },
@@ -72,7 +72,7 @@ function DeploymentRow({ app, deployment }: { app: App; deployment: Deployment }
       </div>
       <div className="shrink-0">
         {isCurrent ? (
-          <span className="rounded-full bg-mint px-2.5 py-1 text-xs font-medium text-forest">Serving now</span>
+          <span className="text-sm font-medium text-forest">Serving now</span>
         ) : deployment.status === "superseded" || deployment.status === "failed" ? (
           <form action={redeploy}>
             <input type="hidden" name="deploymentId" value={deployment.id} />
@@ -105,9 +105,9 @@ function DatabaseCard({ app }: { app: App }) {
             Database <span className="font-mono text-ink">{app.databaseName}</span> on Grove&apos;s Postgres 17. These
             variables are injected automatically; set any of them yourself to override.
           </p>
-          <ul className="mt-4 flex flex-wrap gap-1.5">
+          <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1">
             {vars.map((key) => (
-              <li key={key} className="rounded-md bg-sunken px-2 py-1 font-mono text-xs text-muted">
+              <li key={key} className="font-mono text-xs text-muted">
                 {key}
               </li>
             ))}
@@ -182,7 +182,7 @@ export default async function AppPage(props: PageProps<"/dashboard/apps/[name]">
             </span>
           </div>
           {app.pollError && (
-            <p className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-clay-soft px-3 py-1.5 text-sm text-clay">
+            <p className="mt-3 inline-flex items-center gap-1.5 text-sm text-clay">
               <TriangleAlert className="size-4 shrink-0" aria-hidden="true" />
               {app.pollError}
             </p>

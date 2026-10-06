@@ -1,8 +1,8 @@
-import "@/lib/env";
-import { config } from "@/lib/config";
-import { query } from "@/lib/db";
-import { docker } from "@/lib/docker";
-import { getGitHubToken, getViewerLogin } from "@/lib/github";
+import "@/lib/shared/env";
+import { config } from "@/lib/shared/config";
+import { query } from "@/lib/shared/db";
+import { docker } from "@/lib/shared/docker";
+import { getGitHubToken, getViewerLogin } from "@/lib/shared/github";
 import { sleep } from "./exec";
 import { startPoller } from "./poller";
 import { startProxy } from "./proxy";

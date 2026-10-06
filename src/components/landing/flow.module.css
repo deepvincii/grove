@@ -1,0 +1,393 @@
+/*
+ * One 6s loop: type `git push`, the commit travels to the build, three image
+ * layers stack, the container starts, and the URL lights up.
+ * The static styles are the finished frame, used when motion is reduced.
+ */
+.flow {
+  --loop: 6s;
+}
+
+.cover {
+  transform: translateX(57.6px);
+}
+
+.body {
+  fill: var(--color-mint, #e6f0e4);
+}
+
+.waiting,
+.starting {
+  opacity: 0;
+}
+
+.running {
+  fill: var(--color-forest, #1e4d36);
+}
+
+.runDot,
+.urlDot {
+  fill: var(--color-leaf, #2f9e5f);
+}
+
+.urlText {
+  fill: var(--color-forest, #1e4d36);
+}
+
+.pulse {
+  fill: none;
+  stroke: var(--color-moss, #3f7a55);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 0 2;
+  stroke-dashoffset: -1.05;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cover,
+  .command,
+  .output,
+  .layer1,
+  .layer2,
+  .layer3,
+  .container,
+  .body,
+  .waiting,
+  .starting,
+  .running,
+  .runDot,
+  .urlDot,
+  .urlText,
+  .page {
+    animation-duration: var(--loop);
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  .cover {
+    animation-name: cover;
+  }
+  .command {
+    animation-name: command;
+  }
+  .output {
+    animation-name: output;
+  }
+  .layer1 {
+    animation-name: layer1;
+  }
+  .layer2 {
+    animation-name: layer2;
+  }
+  .layer3 {
+    animation-name: layer3;
+  }
+  .container {
+    animation-name: container;
+  }
+  .body {
+    animation-name: body;
+  }
+  .waiting {
+    animation-name: waiting;
+  }
+  .starting {
+    animation-name: starting;
+  }
+  .running {
+    animation-name: running;
+  }
+  .runDot {
+    animation-name: run-dot;
+  }
+  .urlDot {
+    animation-name: url-dot;
+  }
+  .urlText {
+    animation-name: url-text;
+  }
+  .page {
+    animation-name: page;
+  }
+
+  .caret {
+    animation: blink 1s steps(1, end) infinite;
+  }
+
+  .pulse {
+    animation: pulse var(--loop) infinite both;
+  }
+  .pulse1 {
+    animation-delay: 0.75s;
+  }
+  .pulse2 {
+    animation-delay: 2.25s;
+  }
+  .pulse3 {
+    animation-delay: 3.3s;
+  }
+}
+
+@keyframes cover {
+  0%,
+  2.5% {
+    transform: translateX(0);
+    animation-timing-function: steps(8, end);
+  }
+  10%,
+  97.5% {
+    transform: translateX(57.6px);
+  }
+  97.6%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes command {
+  0%,
+  93.3% {
+    opacity: 1;
+  }
+  97.5%,
+  98% {
+    opacity: 0;
+  }
+  99%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes output {
+  0%,
+  11% {
+    opacity: 0;
+  }
+  12.5%,
+  93.3% {
+    opacity: 1;
+  }
+  97.5%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes layer1 {
+  0%,
+  21.7% {
+    opacity: 0;
+    transform: translateY(-12px);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  26.7%,
+  93.3% {
+    opacity: 1;
+    transform: none;
+  }
+  97.5%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+@keyframes layer2 {
+  0%,
+  26.7% {
+    opacity: 0;
+    transform: translateY(-12px);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  31.7%,
+  93.3% {
+    opacity: 1;
+    transform: none;
+  }
+  97.5%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+@keyframes layer3 {
+  0%,
+  31.7% {
+    opacity: 0;
+    transform: translateY(-12px);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  36.7%,
+  93.3% {
+    opacity: 1;
+    transform: none;
+  }
+  97.5%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/* The container is always on screen; it gives a small bump when the build arrives. */
+@keyframes container {
+  0%,
+  46.7% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0.3, 0, 0.6, 1);
+  }
+  49% {
+    transform: translateY(-3px);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.6, 1);
+  }
+  51.7%,
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes body {
+  0%,
+  53.5% {
+    fill: var(--color-card, #fff);
+  }
+  55.5%,
+  93.3% {
+    fill: var(--color-mint, #e6f0e4);
+  }
+  97.5%,
+  100% {
+    fill: var(--color-card, #fff);
+  }
+}
+
+@keyframes waiting {
+  0%,
+  45.7% {
+    opacity: 1;
+  }
+  46.7%,
+  96.5% {
+    opacity: 0;
+  }
+  97.5%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes starting {
+  0%,
+  45.7% {
+    opacity: 0;
+  }
+  46.7%,
+  53.5% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes running {
+  0%,
+  53.5% {
+    opacity: 0;
+  }
+  55%,
+  96.5% {
+    opacity: 1;
+  }
+  97.5%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes run-dot {
+  0%,
+  45.7% {
+    fill: var(--color-faint, #8d928e);
+  }
+  46.7%,
+  53.5% {
+    fill: var(--color-amber, #a8661a);
+  }
+  55%,
+  93.3% {
+    fill: var(--color-leaf, #2f9e5f);
+  }
+  97.5%,
+  100% {
+    fill: var(--color-faint, #8d928e);
+  }
+}
+
+@keyframes url-dot {
+  0%,
+  64% {
+    fill: var(--color-faint, #8d928e);
+  }
+  65.5%,
+  93.3% {
+    fill: var(--color-leaf, #2f9e5f);
+  }
+  97.5%,
+  100% {
+    fill: var(--color-faint, #8d928e);
+  }
+}
+
+@keyframes url-text {
+  0%,
+  64% {
+    fill: var(--color-faint, #8d928e);
+  }
+  65.5%,
+  93.3% {
+    fill: var(--color-forest, #1e4d36);
+  }
+  97.5%,
+  100% {
+    fill: var(--color-faint, #8d928e);
+  }
+}
+
+@keyframes page {
+  0%,
+  65.8% {
+    opacity: 0;
+    transform: translateY(4px);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  72%,
+  93.3% {
+    opacity: 1;
+    transform: none;
+  }
+  97.5%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    stroke-dashoffset: 0.05;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  9.2%,
+  100% {
+    stroke-dashoffset: -1.05;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

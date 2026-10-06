@@ -1,8 +1,7 @@
 "use client";
 
-import { Check, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/web/cn";
 
 function copyWithSelection(text: string): boolean {
   const textarea = document.createElement("textarea");
@@ -44,12 +43,11 @@ export function CopyButton({ text, label, className }: { text: string; label: st
         onClick={copy}
         aria-label={label}
         className={cn(
-          "inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage",
-          copied ? "text-sage" : "text-term-dim hover:bg-term-line hover:text-term-fg",
+          "inline-flex h-7 min-w-16 items-center justify-center rounded-md border border-term-line px-2.5 font-mono text-xs transition-colors hover:border-term-dim hover:text-term-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-term-dim",
+          copied ? "text-term-fg" : "text-term-dim",
           className,
         )}
       >
-        {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
         <span aria-hidden="true">{copied ? "Copied" : "Copy"}</span>
       </button>
       <span role="status" className="sr-only">

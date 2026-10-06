@@ -7,12 +7,12 @@ import { LogViewer } from "@/components/dashboard/log-viewer";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { SubmitButton } from "@/components/dashboard/submit-button";
 import { button, card } from "@/components/dashboard/ui";
-import { cn } from "@/lib/cn";
-import { appUrl, duration, shortSha, timeAgo } from "@/lib/format";
-import { getAppByName, getDeployment, getHeartbeat } from "@/lib/queries";
-import { commitWebUrl } from "@/lib/repos";
-import { TRIGGER_LABELS } from "@/lib/status";
-import { isActive, type DeploymentStatus } from "@/lib/types";
+import { cn } from "@/lib/web/cn";
+import { appUrl, duration, shortSha, timeAgo } from "@/lib/shared/format";
+import { getAppByName, getDeployment, getHeartbeat } from "@/lib/shared/queries";
+import { commitWebUrl } from "@/lib/shared/repos";
+import { TRIGGER_LABELS } from "@/lib/web/status";
+import { isActive, type DeploymentStatus } from "@/lib/shared/types";
 
 export async function generateMetadata(props: PageProps<"/dashboard/apps/[name]/deployments/[id]">) {
   const { name, id } = await props.params;
@@ -32,25 +32,25 @@ function Progress({ status, hasRelease }: { status: DeploymentStatus; hasRelease
   const steps = STEPS.filter((step) => hasRelease || step.label !== "Release");
   const reached = steps.findIndex((step) => step.statuses.includes(status));
   return (
-    <ol className="flex flex-wrap items-center gap-2 text-xs">
+    <ol className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
       {steps.map((step, index) => {
         const done = reached > index || status === "live" || status === "superseded";
         const currentStep = reached === index && isActive(status);
         return (
-          <li key={step.label} className="flex items-center gap-2">
+          <li key={step.label} className="flex items-center gap-3">
             <span
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-medium",
-                done && "border-transparent bg-mint text-forest",
-                currentStep && "border-amber/30 bg-amber-soft text-amber",
-                !done && !currentStep && "border-line text-faint",
+                "inline-flex items-center gap-1.5",
+                done && "text-ink",
+                currentStep && "font-medium text-amber",
+                !done && !currentStep && "text-faint",
               )}
             >
-              {done && <Check className="size-3" aria-hidden="true" />}
-              {currentStep && <span className="size-1.5 animate-pulse rounded-full bg-amber" />}
+              {done && <Check className="size-3.5 text-forest" aria-hidden="true" />}
+              {currentStep && <span className="size-2 animate-pulse rounded-full bg-amber" />}
               {step.label}
             </span>
-            {index < steps.length - 1 && <span className="h-px w-3 bg-line-strong" />}
+            {index < steps.length - 1 && <span className="text-line-strong">/</span>}
           </li>
         );
       })}

@@ -4,10 +4,10 @@ import { useActionState, useMemo, useState } from "react";
 import { Check, ChevronRight, Lock, Search } from "lucide-react";
 import { SubmitButton } from "@/components/dashboard/submit-button";
 import { button, card, input, label } from "@/components/dashboard/ui";
-import { cn } from "@/lib/cn";
-import { timeAgo } from "@/lib/format";
-import type { RepoSummary } from "@/lib/github";
-import { normalizeRepo, suggestAppName } from "@/lib/validation";
+import { cn } from "@/lib/web/cn";
+import { timeAgo } from "@/lib/shared/format";
+import type { RepoSummary } from "@/lib/shared/github";
+import { normalizeRepo, suggestAppName } from "@/lib/web/validation";
 import { createApp, type FormState } from "../actions";
 
 export function NewAppForm({
@@ -55,7 +55,7 @@ export function NewAppForm({
                 className={cn(input, "pl-10")}
               />
             </div>
-            <ul className="mt-3 max-h-72 divide-y divide-line overflow-y-auto rounded-xl border border-line">
+            <ul className="mt-3 max-h-72 divide-y divide-line overflow-y-auto rounded-lg border border-line">
               {visibleRepos.map((r) => {
                 const selected = normalizeRepo(repo) === r.fullName;
                 return (
@@ -66,7 +66,7 @@ export function NewAppForm({
                       aria-pressed={selected}
                       className={cn(
                         "flex w-full items-center gap-3 px-4 py-3 text-left text-sm transition-colors",
-                        selected ? "bg-mint" : "hover:bg-sunken",
+                        selected ? "bg-sunken" : "hover:bg-sunken",
                       )}
                     >
                       <span className="min-w-0 flex-1">
@@ -155,14 +155,14 @@ export function NewAppForm({
           <p className="mt-1.5 text-xs text-muted">Pushes to this branch deploy automatically.</p>
         </div>
 
-        <label className="flex items-start gap-3 rounded-xl border border-line p-4 sm:col-span-1">
+        <label className="flex items-start gap-3 rounded-lg border border-line p-4 sm:col-span-1">
           <input type="checkbox" name="autoDeploy" defaultChecked className="mt-0.5 size-4 accent-forest" />
           <span className="text-sm">
             <span className="block font-medium text-ink">Deploy on every push</span>
             <span className="text-muted">Grove checks GitHub every few seconds.</span>
           </span>
         </label>
-        <label className="flex items-start gap-3 rounded-xl border border-line p-4 sm:col-span-1">
+        <label className="flex items-start gap-3 rounded-lg border border-line p-4 sm:col-span-1">
           <input type="checkbox" name="postgres" className="mt-0.5 size-4 accent-forest" />
           <span className="text-sm">
             <span className="block font-medium text-ink">Add a Postgres database</span>
@@ -218,7 +218,7 @@ export function NewAppForm({
       </section>
 
       {state.error && (
-        <p role="alert" className="rounded-xl border border-clay/25 bg-clay-soft px-4 py-3 text-sm whitespace-pre-line text-clay">
+        <p role="alert" className="text-sm whitespace-pre-line text-clay">
           {state.error}
         </p>
       )}

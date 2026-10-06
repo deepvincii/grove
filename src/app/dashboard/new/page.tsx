@@ -1,5 +1,5 @@
 import { connection } from "next/server";
-import { getGitHubToken, listRepos, type RepoSummary } from "@/lib/github";
+import { getGitHubToken, listRepos, type RepoSummary } from "@/lib/shared/github";
 import { NewAppForm } from "./new-app-form";
 
 export const metadata = { title: "New app" };

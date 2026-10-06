@@ -1,6 +1,6 @@
 import net from "node:net";
 
-export function isPortFree(port: number, host = "127.0.0.1"): Promise<boolean> {
+function isPortFree(port: number, host = "127.0.0.1"): Promise<boolean> {
   return new Promise((resolve) => {
     const server = net.createServer();
     server.once("error", () => resolve(false));

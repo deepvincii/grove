@@ -4,14 +4,14 @@
   /* Surfaces */
   --color-paper: #f7f7f2;
   --color-card: #ffffff;
-  --color-sunken: #f0f1ea;
-  --color-line: #e2e5da;
-  --color-line-strong: #cfd4c6;
+  --color-sunken: #efefea;
+  --color-line: #e3e3dd;
+  --color-line-strong: #cbcbc3;
 
   /* Text */
   --color-ink: #13241b;
-  --color-muted: #5d6b62;
-  --color-faint: #8b978f;
+  --color-muted: #5b625d;
+  --color-faint: #8d928e;
 
   /* Greens */
   --color-forest: #1e4d36;
@@ -35,9 +35,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: var(--font-plex-serif), ui-serif, Georgia, serif;
 }
 
 :root {

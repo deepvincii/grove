@@ -20,19 +20,18 @@ export function statusPage(options: {
   :root { color-scheme: light; }
   body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f7f7f2;
     color: #13241b; font: 15px/1.6 ui-sans-serif, system-ui, -apple-system, sans-serif; }
-  main { max-width: 440px; padding: 40px 28px; text-align: center; }
-  .code { display: inline-block; font: 12px ui-monospace, Menlo, monospace; color: #1e4d36;
-    background: #e6f0e4; border-radius: 999px; padding: 3px 10px; }
-  h1 { font: 400 34px/1.15 ui-serif, Georgia, serif; margin: 16px 0 8px; }
-  p { color: #5d6b62; margin: 0 0 24px; }
+  main { max-width: 460px; padding: 40px 28px; }
+  .code { font: 13px ui-monospace, Menlo, monospace; color: #8d928e; }
+  h1 { font: 400 32px/1.2 ui-serif, Georgia, serif; margin: 8px 0 8px; }
+  p { color: #5b625d; margin: 0 0 24px; }
   a { display: inline-block; background: #1e4d36; color: #fff; text-decoration: none;
-    border-radius: 999px; padding: 9px 18px; font-weight: 500; }
+    border-radius: 6px; padding: 8px 16px; font-weight: 500; }
   a:hover { background: #143726; }
 </style>
 </head>
 <body>
 <main>
-  <span class="code">${status}</span>
+  <span class="code">Error ${status}</span>
   <h1>${escapeHtml(title)}</h1>
   <p>${escapeHtml(message)}</p>
   ${link ? `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>` : ""}

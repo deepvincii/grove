@@ -1,5 +1,5 @@
-import { query } from "@/lib/db";
-import type { LogKind } from "@/lib/types";
+import { query } from "@/lib/shared/db";
+import type { LogKind } from "@/lib/shared/types";
 
 const ANSI_ESCAPES = /\u001b\[[0-9;?]*[ -/]*[@-~]/g;
 

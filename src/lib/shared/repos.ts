@@ -8,7 +8,7 @@ const execFileAsync = promisify(execFile);
  * Apps store GitHub repos as "owner/name" and repos on any other host as an https URL
  * (for example https://gitlab.com/group/project). Other hosts must be public.
  */
-export type RepoSource = { kind: "github"; fullName: string } | { kind: "git"; url: string; host: string };
+type RepoSource = { kind: "github"; fullName: string } | { kind: "git"; url: string; host: string };
 
 export function parseRepo(repo: string): RepoSource {
   if (repo.startsWith("https://")) return { kind: "git", url: repo, host: new URL(repo).host };

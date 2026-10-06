@@ -2,8 +2,8 @@
 
 import { useActionState } from "react";
 import { deleteApp, saveSettings, type FormState } from "@/app/dashboard/actions";
-import { cn } from "@/lib/cn";
-import type { App } from "@/lib/types";
+import { cn } from "@/lib/web/cn";
+import type { App } from "@/lib/shared/types";
 import { SubmitButton } from "./submit-button";
 import { button, card, input, label } from "./ui";
 
@@ -21,7 +21,7 @@ export function SettingsForm({ app }: { app: App }) {
           </label>
           <input id="branch" name="branch" defaultValue={app.branch} spellCheck={false} className={cn(input, "font-mono")} />
         </div>
-        <label className="flex items-start gap-3 self-end rounded-xl border border-line p-3.5">
+        <label className="flex items-start gap-3 self-end rounded-lg border border-line p-3.5">
           <input type="checkbox" name="autoDeploy" defaultChecked={app.autoDeploy} className="mt-0.5 size-4 accent-forest" />
           <span className="text-sm">
             <span className="block font-medium text-ink">Deploy on every push</span>
@@ -64,7 +64,7 @@ export function DeleteAppForm({ appName }: { appName: string }) {
   const [state, formAction] = useActionState<FormState, FormData>(deleteApp, {});
 
   return (
-    <form action={formAction} className={`${card} border-clay/25 p-6`}>
+    <form action={formAction} className={`${card} p-6`}>
       <input type="hidden" name="name" value={appName} />
       <h2 className="text-base font-semibold text-clay">Delete this app</h2>
       <p className="mt-1 text-sm text-muted">

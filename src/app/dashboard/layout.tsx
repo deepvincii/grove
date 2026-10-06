@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { connection } from "next/server";
-import { Plus } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { RunnerStatus } from "@/components/dashboard/runner-status";
 import { button } from "@/components/dashboard/ui";
-import { getHeartbeat, isRunnerOnline } from "@/lib/queries";
+import { getHeartbeat, isRunnerOnline } from "@/lib/shared/queries";
 
 export default async function DashboardLayout({ children }: LayoutProps<"/dashboard">) {
   await connection();
@@ -12,21 +11,20 @@ export default async function DashboardLayout({ children }: LayoutProps<"/dashbo
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-5 sm:px-8">
-          <Link href="/" aria-label="Grove home" className="rounded-lg focus-visible:outline-2 focus-visible:outline-forest">
+      <header className="border-b border-line bg-paper">
+        <div className="mx-auto flex h-16 max-w-6xl items-center gap-8 px-5 sm:px-8">
+          <Link href="/" aria-label="Grove home" className="rounded-md focus-visible:outline-2 focus-visible:outline-ink">
             <Logo />
           </Link>
           <nav className="hidden text-sm sm:block">
-            <Link href="/dashboard" className="rounded-full px-3 py-1.5 font-medium text-ink hover:bg-sunken">
+            <Link href="/dashboard" className="font-medium text-ink hover:underline">
               Apps
             </Link>
           </nav>
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto flex items-center gap-5">
             <RunnerStatus online={isRunnerOnline(heartbeat)} githubUser={heartbeat?.githubUser ?? null} />
             <Link href="/dashboard/new" className={button.primary}>
-              <Plus className="size-4" aria-hidden="true" />
-              <span className="hidden sm:inline">New app</span>
+              New app
             </Link>
           </div>
         </div>

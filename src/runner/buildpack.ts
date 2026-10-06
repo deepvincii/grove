@@ -1,6 +1,6 @@
 import { access, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { App } from "@/lib/types";
+import type { App } from "@/lib/shared/types";
 
 const DEFAULT_NODE_MAJOR = 24;
 
@@ -13,7 +13,7 @@ interface PackageJson {
   packageManager?: string;
 }
 
-export interface BuildPlan {
+interface BuildPlan {
   dockerfile: string;
   /** True when Grove wrote the Dockerfile; it then reads build-time env from the grove_env secret. */
   generated: boolean;

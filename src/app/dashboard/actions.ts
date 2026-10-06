@@ -2,14 +2,14 @@
 
 import { refresh } from "next/cache";
 import { redirect } from "next/navigation";
-import { dropPostgres, provisionPostgres } from "@/lib/addons";
-import { query, withTransaction } from "@/lib/db";
-import { enqueueDeployment } from "@/lib/deployments";
-import { removeAppResources } from "@/lib/docker";
-import { defaultBranch, latestCommit } from "@/lib/repos";
-import { getAppById, getAppByName, getDeployment } from "@/lib/queries";
-import type { App } from "@/lib/types";
-import { appNameError, normalizeRepo, parseEnvText } from "@/lib/validation";
+import { dropPostgres, provisionPostgres } from "@/lib/shared/addons";
+import { query, withTransaction } from "@/lib/shared/db";
+import { enqueueDeployment } from "@/lib/shared/deployments";
+import { removeAppResources } from "@/lib/shared/docker";
+import { defaultBranch, latestCommit } from "@/lib/shared/repos";
+import { getAppById, getAppByName, getDeployment } from "@/lib/shared/queries";
+import type { App } from "@/lib/shared/types";
+import { appNameError, normalizeRepo, parseEnvText } from "@/lib/web/validation";
 
 export interface FormState {
   error?: string;
